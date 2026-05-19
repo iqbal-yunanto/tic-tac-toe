@@ -5,6 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tic Tac Toe Cup - Quiz Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              cyan: {
+                400: '#11C3D2',
+                500: '#0FAAB7',
+                600: '#0D929D',
+                700: '#0B7A83',
+              },
+              yellow: {
+                300: '#FDE293',
+                400: '#FCD775',
+                500: '#F8CD53',
+                600: '#E5B630',
+                700: '#C4971A',
+              },
+              slate: {
+                950: '#042F2E',
+                900: '#134E4A',
+                800: '#115E59',
+              }
+            }
+          }
+        }
+      }
+    </script>
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
       rel="stylesheet"
@@ -15,12 +43,12 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
       :root {
-        --primary: #3b82f6;
-        --primary-glow: rgba(59, 130, 246, 0.5);
-        --accent: #ec4899;
-        --accent-glow: rgba(236, 72, 153, 0.5);
-        --bg-dark: #020617;
-        --glass-bg: rgba(15, 23, 42, 0.6);
+        --primary: #11C3D2;
+        --primary-glow: rgba(17, 195, 210, 0.5);
+        --accent: #F8CD53;
+        --accent-glow: rgba(248, 205, 83, 0.5);
+        --bg-dark: #042F2E;
+        --glass-bg: rgba(17, 94, 89, 0.6);
         --glass-border: rgba(255, 255, 255, 0.1);
       }
 
@@ -37,7 +65,7 @@
         inset: 0;
         z-index: -1;
         overflow: hidden;
-        background: radial-gradient(circle at 50% 50%, #0f172a 0%, #020617 100%);
+        background: radial-gradient(circle at 50% 50%, #134E4A 0%, #042F2E 100%);
       }
 
       .bg-blob {
@@ -92,8 +120,8 @@
         overflow: hidden;
         padding: 0;
         position: relative;
-        background: #1e293b;
-        color: #1e293b;
+        background: #115E59;
+        color: #115E59;
         cursor: grab;
       }
       .bracket-container:active {
@@ -129,7 +157,7 @@
       }
 
       .round-header {
-        background: #2b4c7e;
+        background: #115E59;
         color: white;
         padding: 6px 14px;
         border-radius: 6px;
@@ -175,7 +203,7 @@
       .final-winner-box {
         width: 220px;
         height: 100px;
-        background: rgba(30, 41, 59, 0.4);
+        background: rgba(17, 94, 89, 0.4);
         backdrop-filter: blur(12px);
         border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 24px;
@@ -191,10 +219,10 @@
       }
 
       .final-winner-box.has-winner {
-        background: #fbbf24;
-        border-color: #f59e0b;
-        color: #78350f;
-        box-shadow: 0 0 50px rgba(251, 191, 36, 0.5);
+        background: #F8CD53;
+        border-color: #E5B630;
+        color: #5C4304;
+        box-shadow: 0 0 50px rgba(248, 205, 83, 0.5);
       }
 
       .custom-scrollbar::-webkit-scrollbar {
@@ -205,11 +233,11 @@
         border-radius: 10px;
       }
       .custom-scrollbar::-webkit-scrollbar-thumb {
-        background: rgba(59, 130, 246, 0.3);
+        background: rgba(17, 195, 210, 0.3);
         border-radius: 10px;
       }
       .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-        background: rgba(59, 130, 246, 0.5);
+        background: rgba(17, 195, 210, 0.5);
       }
 
       .match-divider {
@@ -247,7 +275,7 @@
       .match-node {
         width: 170px;
         background: rgba(255, 255, 255, 0.9);
-        border: 2px solid #3b82f6;
+        border: 2px solid #11C3D2;
         border-radius: 12px;
         padding: 8px;
         display: flex;
@@ -261,7 +289,7 @@
 
       .match-node:hover {
         transform: translateY(-2px) scale(1.02);
-        box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2);
+        box-shadow: 0 10px 25px rgba(17, 195, 210, 0.2);
         background: #ffffff;
       }
 
@@ -272,7 +300,7 @@
         gap: 8px;
         font-size: 11px;
         font-weight: 800;
-        color: #1e293b;
+        color: #115E59;
         background: #f1f5f9;
         border: 1px solid #e2e8f0;
         border-radius: 8px;
@@ -289,8 +317,8 @@
       }
       .match-slot.winner {
         background: white;
-        border: 2px solid #3b82f6;
-        color: #1e3a8a;
+        border: 2px solid #11C3D2;
+        color: #134E4A;
       }
       .match-slot img {
         width: 20px;
@@ -326,12 +354,12 @@
         margin: 0 2px;
       }
       .fail-x {
-        background: #3b82f6;
-        box-shadow: 0 0 5px #3b82f6;
+        background: #11C3D2;
+        box-shadow: 0 0 5px #11C3D2;
       }
       .fail-o {
-        background: #ec4899;
-        box-shadow: 0 0 5px #ec4899;
+        background: #F8CD53;
+        box-shadow: 0 0 5px #F8CD53;
       }
 
       .timer-bar {
@@ -433,12 +461,12 @@
         transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
       }
       .win-cell-x {
-        box-shadow: 0 0 50px rgba(59, 130, 246, 0.8), inset 0 0 30px rgba(59, 130, 246, 0.4);
-        border: 3px solid #3b82f6 !important;
+        box-shadow: 0 0 50px rgba(17, 195, 210, 0.8), inset 0 0 30px rgba(17, 195, 210, 0.4);
+        border: 3px solid #11C3D2 !important;
       }
       .win-cell-o {
-        box-shadow: 0 0 50px rgba(236, 72, 153, 0.8), inset 0 0 30px rgba(236, 72, 153, 0.4);
-        border: 3px solid #ec4899 !important;
+        box-shadow: 0 0 50px rgba(248, 205, 83, 0.8), inset 0 0 30px rgba(248, 205, 83, 0.4);
+        border: 3px solid #F8CD53 !important;
       }
       @keyframes win-pulse {
         0%, 100% { transform: scale(1.08); }
@@ -484,25 +512,25 @@
         border-radius: 4px;
       }
       .custom-scrollbar::-webkit-scrollbar-thumb {
-        background: rgba(59, 130, 246, 0.3);
+        background: rgba(17, 195, 210, 0.3);
         border-radius: 4px;
         border: 2px solid transparent;
         background-clip: content-box;
         transition: background 0.3s;
       }
       .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-        background: rgba(59, 130, 246, 0.6);
+        background: rgba(17, 195, 210, 0.6);
       }
       
       /* Firefox */
       .custom-scrollbar {
         scrollbar-width: thin;
-        scrollbar-color: rgba(59, 130, 246, 0.3) transparent;
+        scrollbar-color: rgba(17, 195, 210, 0.3) transparent;
       }
 
       /* Custom Select Styling for Options */
       select option {
-        background-color: #0f172a;
+        background-color: #134E4A;
         color: white;
         padding: 10px;
       }
@@ -525,7 +553,7 @@
 
     <header id="main-header" class="text-center shrink-0 pb-2 transition-opacity duration-500">
       <h1
-        class="text-3xl md:text-4xl font-black bg-gradient-to-r from-cyan-400 to-blue-600 bg-clip-text text-transparent uppercase tracking-tighter italic drop-shadow-sm"
+        class="text-3xl md:text-4xl font-black bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent uppercase tracking-tighter italic drop-shadow-sm"
       >
         TIC TAC TOE CUP
       </h1>
@@ -543,7 +571,7 @@
         <div class="flex flex-col lg:flex-row gap-0 h-full overflow-hidden">
           <!-- Left Column: Settings -->
           <div class="lg:w-1/3 p-6 lg:p-10 flex flex-col justify-center border-b lg:border-b-0 lg:border-r border-white/10">
-            <h2 class="text-2xl font-black mb-8 flex items-center gap-3 text-blue-400 italic">
+            <h2 class="text-2xl font-black mb-8 flex items-center gap-3 text-cyan-400 italic">
               <i class="fas fa-sliders text-sm"></i> SETUP
             </h2>
             <div class="space-y-6">
@@ -554,7 +582,7 @@
                 >
                 <select
                   id="match-format"
-                  class="w-full bg-blue-600/10 border border-blue-500/40 rounded-lg px-4 py-3 focus:outline-none text-white text-sm font-bold cursor-pointer hover:bg-blue-600/20 transition-all"
+                  class="w-full bg-cyan-600/10 border border-cyan-500/40 rounded-lg px-4 py-3 focus:outline-none text-white text-sm font-bold cursor-pointer hover:bg-cyan-600/20 transition-all"
                 >
                   <option value="1" selected>Best of 1 (Quick)</option>
                   <option value="3">Best of 3 (Standard)</option>
@@ -568,7 +596,7 @@
                 >
                 <select
                   id="time-setting"
-                  class="w-full bg-blue-600/10 border border-blue-500/40 rounded-lg px-4 py-3 focus:outline-none text-white text-sm font-bold cursor-pointer hover:bg-blue-600/20 transition-all"
+                  class="w-full bg-cyan-600/10 border border-cyan-500/40 rounded-lg px-4 py-3 focus:outline-none text-white text-sm font-bold cursor-pointer hover:bg-cyan-600/20 transition-all"
                 >
                   <option value="30">30 sec (Blitz)</option>
                   <option value="60" selected>60 sec (Standard)</option>
@@ -586,14 +614,14 @@
                   min="2"
                   max="16"
                   value="4"
-                  class="w-full h-1.5 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-blue-500"
+                  class="w-full h-1.5 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-cyan-500"
                   oninput="updatePlayerCountLabel(this.value)"
                 />
                 <div
                   class="flex justify-between text-[10px] mt-1 text-slate-400 font-bold"
                 >
                   <span>2</span>
-                  <span id="player-count-val" class="text-blue-400 text-sm"
+                  <span id="player-count-val" class="text-cyan-400 text-sm"
                     >4 Players</span
                   >
                   <span>16</span>
@@ -604,7 +632,7 @@
             <div class="pt-10">
               <button
                 onclick="validateAndStart()"
-                class="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 py-4 rounded-2xl font-black text-xl shadow-xl transition-all active:scale-95 mb-4"
+                class="w-full bg-gradient-to-r from-cyan-600 to-cyan-700 hover:from-cyan-500 hover:to-cyan-600 py-4 rounded-2xl font-black text-xl shadow-xl transition-all active:scale-95 mb-4"
               >
                 START GAME
               </button>
@@ -614,7 +642,7 @@
           <!-- Right Column: Players List -->
           <div class="lg:w-2/3 p-6 lg:p-10 flex flex-col bg-white/[0.02]">
             <div class="flex justify-between items-center mb-8">
-              <h2 class="text-2xl font-black flex items-center gap-3 text-pink-500 italic">
+              <h2 class="text-2xl font-black flex items-center gap-3 text-yellow-500 italic">
                 <i class="fas fa-users"></i> ROSTER
               </h2>
               <span class="text-xs font-bold text-slate-500 uppercase tracking-widest bg-white/5 px-3 py-1 rounded-full">
@@ -631,24 +659,24 @@
 
       <!-- STEP 2: SHUFFLING -->
       <section id="shuffle-view" class="hidden glass-card p-12 text-center">
-        <i class="fas fa-sync text-4xl text-blue-400 animate-spin mb-4"></i>
+        <i class="fas fa-sync text-4xl text-cyan-400 animate-spin mb-4"></i>
         <h2 class="text-3xl font-black italic uppercase">Drawing Bracket...</h2>
       </section>
 
       <!-- STEP 3: RULES -->
       <section id="rules-view" class="hidden flex-col items-center justify-center p-4 min-h-0 h-full">
-        <div class="glass-card p-6 md:p-10 text-center max-w-lg w-full border-blue-500/30 shadow-2xl relative overflow-hidden">
+        <div class="glass-card p-6 md:p-10 text-center max-w-lg w-full border-cyan-500/30 shadow-2xl relative overflow-hidden">
           <!-- Decorative Background Icon -->
           <i class="fas fa-scroll absolute -right-4 -top-4 text-white/5 text-9xl -rotate-12"></i>
           
-          <h2 class="text-2xl md:text-3xl font-black italic uppercase mb-8 text-blue-400 tracking-tighter relative z-10">
+          <h2 class="text-2xl md:text-3xl font-black italic uppercase mb-8 text-cyan-400 tracking-tighter relative z-10">
             <i class="fas fa-bolt mr-2"></i>Duel Protocol
           </h2>
           
           <div class="space-y-4 text-left mb-8 relative z-10">
             <div class="flex items-center gap-4 p-4 bg-white/5 rounded-xl border border-white/5">
-              <div class="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center shrink-0 border border-blue-500/20">
-                <i class="fas fa-th-large text-blue-400 text-xl"></i>
+              <div class="w-12 h-12 rounded-xl bg-cyan-500/20 flex items-center justify-center shrink-0 border border-cyan-500/20">
+                <i class="fas fa-th-large text-cyan-400 text-xl"></i>
               </div>
               <div class="flex-1">
                 <h4 class="text-sm font-black text-white uppercase tracking-wider">Claim</h4>
@@ -679,7 +707,7 @@
 
           <button
             onclick="showCategorySelection()"
-            class="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 py-4 rounded-xl font-black uppercase shadow-xl transition-all active:scale-95 text-lg tracking-widest italic relative z-10"
+            class="w-full bg-gradient-to-r from-cyan-600 to-cyan-700 hover:from-cyan-500 hover:to-cyan-600 py-4 rounded-xl font-black uppercase shadow-xl transition-all active:scale-95 text-lg tracking-widest italic relative z-10"
           >
             NEXT: SELECT CATEGORIES
           </button>
@@ -688,18 +716,18 @@
 
       <!-- STEP 3.5: CATEGORY SELECTION -->
       <section id="category-view" class="hidden flex-col items-center justify-center p-4 min-h-0 h-full">
-        <div class="glass-card w-full max-w-6xl max-h-[90vh] border-blue-500/30 shadow-2xl relative overflow-hidden">
+        <div class="glass-card w-full max-w-6xl max-h-[90vh] border-cyan-500/30 shadow-2xl relative overflow-hidden">
           
           <!-- Scrollable Content Area -->
           <div class="h-full overflow-y-auto p-6 md:p-8 pb-32 custom-scrollbar">
           <div class="text-center mb-8">
-            <p class="text-blue-400 text-2xl md:text-3xl font-black italic uppercase tracking-tighter">
+            <p class="text-cyan-400 text-2xl md:text-3xl font-black italic uppercase tracking-tighter">
               Select the topics for this tournament
             </p>
           </div>
 
           <div class="flex justify-center gap-4 mb-6">
-            <button onclick="selectAllCategories()" class="text-[10px] font-black uppercase text-blue-400 hover:text-blue-300 transition-all hover:scale-105">
+            <button onclick="selectAllCategories()" class="text-[10px] font-black uppercase text-cyan-400 hover:text-blue-300 transition-all hover:scale-105">
               <i class="fas fa-check-double mr-1"></i>Select All
             </button>
             <span class="text-white/10">|</span>
@@ -710,10 +738,10 @@
 
           <!-- CORE LOGIC (REQUIRED) -->
           <div id="core-logic-section" class="mb-8">
-            <h4 class="text-[10px] font-black uppercase text-blue-400 mb-3 tracking-[0.3em] flex items-center justify-center gap-2">
-              <span class="w-8 h-[1px] bg-blue-500/30"></span>
+            <h4 class="text-[10px] font-black uppercase text-cyan-400 mb-3 tracking-[0.3em] flex items-center justify-center gap-2">
+              <span class="w-8 h-[1px] bg-cyan-500/30"></span>
               Core Logic (Required)
-              <span class="w-8 h-[1px] bg-blue-500/30"></span>
+              <span class="w-8 h-[1px] bg-cyan-500/30"></span>
             </h4>
             <div class="max-w-sm mx-auto">
               <div class="grid grid-cols-2 gap-3" id="core-grid">
@@ -740,7 +768,7 @@
           <div id="choose-questions-wrapper" class="absolute bottom-6 left-0 right-0 flex justify-center pointer-events-none px-6 transition-all duration-500 opacity-0 scale-95 translate-y-4">
             <button
               onclick="showBracketFromCategories()"
-              class="max-w-[240px] w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 py-3.5 rounded-xl font-black uppercase shadow-[0_20px_50px_rgba(0,0,0,0.5),0_0_30px_rgba(37,99,235,0.3)] transition-all active:scale-95 text-base tracking-widest italic pointer-events-auto flex items-center justify-center gap-3"
+              class="max-w-[240px] w-full bg-gradient-to-r from-cyan-600 to-cyan-700 hover:from-cyan-500 hover:to-cyan-600 py-3.5 rounded-xl font-black uppercase shadow-[0_20px_50px_rgba(0,0,0,0.5),0_0_30px_rgba(37,99,235,0.3)] transition-all active:scale-95 text-base tracking-widest italic pointer-events-auto flex items-center justify-center gap-3"
             >
               NEXT <i class="fas fa-chevron-right text-xs"></i>
             </button>
@@ -795,7 +823,7 @@
               class="glass-card p-4 md:p-5 border-2 border-transparent transition-all flex flex-col items-center gap-3 w-full max-w-[160px] ml-auto relative overflow-hidden"
             >
               <!-- Indicator Glow -->
-              <div class="absolute inset-0 bg-blue-500/5 opacity-0 transition-opacity p1-active-glow"></div>
+              <div class="absolute inset-0 bg-cyan-500/5 opacity-0 transition-opacity p1-active-glow"></div>
               
               <img
                 id="p1-arena-img"
@@ -812,7 +840,7 @@
                   Player 1
                 </h3>
                 <div
-                  class="text-xl md:text-2xl font-black text-blue-400 mt-1"
+                  class="text-xl md:text-2xl font-black text-cyan-400 mt-1"
                 >
                   <i class="fas fa-times"></i>
                 </div>
@@ -866,7 +894,7 @@
               class="glass-card p-4 md:p-5 border-2 border-transparent transition-all opacity-50 flex flex-col items-center gap-3 w-full max-w-[160px] mr-auto relative overflow-hidden"
             >
                <!-- Indicator Glow -->
-               <div class="absolute inset-0 bg-pink-500/5 opacity-0 transition-opacity p2-active-glow"></div>
+               <div class="absolute inset-0 bg-yellow-500/5 opacity-0 transition-opacity p2-active-glow"></div>
 
               <img
                 id="p2-arena-img"
@@ -883,7 +911,7 @@
                   Player 2
                 </h3>
                 <div
-                  class="text-xl md:text-2xl font-black text-pink-500 mt-1"
+                  class="text-xl md:text-2xl font-black text-yellow-500 mt-1"
                 >
                   <i class="far fa-circle"></i>
                 </div>
@@ -951,13 +979,13 @@
       class="fixed inset-0 bg-black/90 backdrop-blur-xl hidden items-center justify-center z-[150] pointer-events-none"
     >
       <div class="text-center">
-        <div id="round-label" class="text-blue-400 font-black text-2xl md:text-3xl uppercase tracking-[0.4em] mb-4 opacity-0">
+        <div id="round-label" class="text-cyan-400 font-black text-2xl md:text-3xl uppercase tracking-[0.4em] mb-4 opacity-0">
           Game 2
         </div>
         <div id="round-main-text" class="text-white font-black text-7xl md:text-9xl italic uppercase tracking-tighter opacity-0">
           READY?
         </div>
-        <div id="round-info-text" class="text-blue-400 font-bold text-lg md:text-xl uppercase tracking-widest mt-4 opacity-0">
+        <div id="round-info-text" class="text-cyan-400 font-bold text-lg md:text-xl uppercase tracking-widest mt-4 opacity-0">
           <!-- Tie break info goes here -->
         </div>
       </div>
@@ -970,11 +998,11 @@
     >
       <div class="flex items-center gap-6 md:gap-12 w-full max-w-7xl justify-center">
         <!-- LEFT HUD (P1) -->
-        <div class="hidden lg:flex flex-col items-center gap-3 glass-card p-4 border-blue-500/30 w-40 hud-left">
-          <img id="modal-p1-avatar" src="" class="w-16 h-16 rounded-2xl border-4 border-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.5)] bg-slate-900 object-contain p-1.5" />
+        <div class="hidden lg:flex flex-col items-center gap-3 glass-card p-4 border-cyan-500/30 w-40 hud-left">
+          <img id="modal-p1-avatar" src="" class="w-16 h-16 rounded-2xl border-4 border-cyan-500 shadow-[0_0_15px_rgba(59,130,246,0.5)] bg-slate-900 object-contain p-1.5" />
           <div class="text-center">
             <div id="modal-p1-name" class="text-white font-black text-sm uppercase tracking-tighter truncate w-32">PLAYER 1</div>
-            <div id="modal-p1-timer" class="font-mono font-black text-3xl text-blue-400 mt-1">00:00</div>
+            <div id="modal-p1-timer" class="font-mono font-black text-3xl text-cyan-400 mt-1">00:00</div>
           </div>
         </div>
 
@@ -988,7 +1016,7 @@
           <div id="question-text" class="text-base md:text-lg font-bold text-white mb-3 leading-tight">
             Loading Question...
           </div>
-          <div id="question-category" class="inline-block px-3 py-0.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[8px] font-black uppercase tracking-widest mb-3">
+          <div id="question-category" class="inline-block px-3 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-[8px] font-black uppercase tracking-widest mb-3">
             CATEGORY
           </div>
           <div id="options-container" class="grid grid-cols-1 gap-2 mb-3"></div>
@@ -1005,11 +1033,11 @@
         </div>
 
         <!-- RIGHT HUD (P2) -->
-        <div class="hidden lg:flex flex-col items-center gap-3 glass-card p-4 border-pink-500/30 w-40 hud-right">
-          <img id="modal-p2-avatar" src="" class="w-16 h-16 rounded-2xl border-4 border-pink-500 shadow-[0_0_15px_rgba(236,72,153,0.5)] bg-slate-900 object-contain p-1.5" />
+        <div class="hidden lg:flex flex-col items-center gap-3 glass-card p-4 border-yellow-500/30 w-40 hud-right">
+          <img id="modal-p2-avatar" src="" class="w-16 h-16 rounded-2xl border-4 border-yellow-500 shadow-[0_0_15px_rgba(236,72,153,0.5)] bg-slate-900 object-contain p-1.5" />
           <div class="text-center">
             <div id="modal-p2-name" class="text-white font-black text-sm uppercase tracking-tighter truncate w-32">PLAYER 2</div>
-            <div id="modal-p2-timer" class="font-mono font-black text-3xl text-pink-400 mt-1">00:00</div>
+            <div id="modal-p2-timer" class="font-mono font-black text-3xl text-yellow-400 mt-1">00:00</div>
           </div>
         </div>
       </div>
@@ -1031,7 +1059,7 @@
       class="fixed inset-0 bg-black/95 hidden flex items-center justify-center z-[110] p-4"
     >
       <div
-        class="glass-card max-w-2xl w-full p-8 border-2 border-blue-500 flex flex-col max-h-[80vh]"
+        class="glass-card max-w-2xl w-full p-8 border-2 border-cyan-500 flex flex-col max-h-[80vh]"
       >
         <div class="flex justify-between items-center mb-6 font-bold">
           Choose Avatar
@@ -1052,13 +1080,13 @@
       class="fixed inset-0 bg-black/90 hidden flex items-center justify-center z-50 p-4"
     >
       <div
-        class="glass-card max-w-sm w-full p-8 text-center border-2 border-blue-500"
+        class="glass-card max-w-sm w-full p-8 text-center border-2 border-cyan-500"
       >
         <div class="flex justify-between items-center mb-8">
           <div id="modal-p1" class="flex-1 text-center">
             <img
               src=""
-              class="w-20 h-20 mx-auto rounded-xl border-2 border-blue-500 mb-2"
+              class="w-20 h-20 mx-auto rounded-xl border-2 border-cyan-500 mb-2"
             />
             <span class="text-xs font-bold block truncate"></span>
           </div>
@@ -1066,14 +1094,14 @@
           <div id="modal-p2" class="flex-1 text-center">
             <img
               src=""
-              class="w-20 h-20 mx-auto rounded-xl border-2 border-pink-500 mb-2"
+              class="w-20 h-20 mx-auto rounded-xl border-2 border-yellow-500 mb-2"
             />
             <span class="text-xs font-bold block truncate"></span>
           </div>
         </div>
         <button
           onclick="launchGame()"
-          class="w-full bg-blue-600 py-4 rounded-xl font-black uppercase shadow-lg shadow-blue-500/30 transition hover:bg-blue-500 active:scale-95"
+          class="w-full bg-cyan-600 py-4 rounded-xl font-black uppercase shadow-lg shadow-cyan-500/30 transition hover:bg-cyan-500 active:scale-95"
         >
           Quiz Duel!
         </button>
@@ -1922,10 +1950,10 @@
             div.className = `player-card player-card-entry flex items-center bg-white/5 rounded-xl border border-white/10 transition-all ${cardClass}`;
             div.innerHTML = `
               <img id="prev-${i}" src="${STICKERS[(i - 1) % STICKERS.length]}" 
-                   class="${imgSize} rounded-lg bg-slate-800 cursor-pointer hover:border-blue-500 border-2 border-transparent transition" 
+                   class="${imgSize} rounded-lg bg-slate-800 cursor-pointer hover:border-cyan-500 border-2 border-transparent transition" 
                    onclick="openStickerModal(${i})">
               <input type="text" id="name-${i}" value="Player ${i}" 
-                     class="bg-transparent border-b border-slate-700 w-full py-0.5 ${textSize} font-bold focus:outline-none focus:border-blue-500">
+                     class="bg-transparent border-b border-slate-700 w-full py-0.5 ${textSize} font-bold focus:outline-none focus:border-cyan-500">
               <button onclick="removePlayer(${i})" class="text-slate-400 hover:text-red-500 p-1.5 transition active:scale-90">
                 <i class="fas fa-times-circle"></i>
               </button>
@@ -2054,7 +2082,7 @@
           
           return `
             <button onclick="toggleCategory('${cat}')" 
-                    class="relative aspect-square rounded-2xl overflow-hidden border-2 transition-all hover:scale-105 group ${isSelected ? 'border-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.4)]' : 'border-white/10 hover:border-white/30'}"
+                    class="relative aspect-square rounded-2xl overflow-hidden border-2 transition-all hover:scale-105 group ${isSelected ? 'border-cyan-500 shadow-[0_0_20px_rgba(59,130,246,0.4)]' : 'border-white/10 hover:border-white/30'}"
                     style="background-image: url('${img}'); background-size: cover; background-position: center;">
               <!-- Overlay -->
               <div class="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors"></div>
@@ -2062,8 +2090,8 @@
               <!-- Content -->
               <div class="absolute inset-0 flex flex-col items-center justify-center p-2 text-center">
                 <span class="text-[10px] md:text-xs font-black uppercase tracking-widest text-white drop-shadow-md">${cat}</span>
-                ${isSelected && isCore ? '<div class="text-[7px] text-blue-400 mt-1 font-black animate-pulse">REQUIRED ACTIVE</div>' : ''}
-                ${isSelected ? '<div class="mt-2 w-5 h-5 rounded-full bg-blue-500 flex items-center justify-center text-[10px]"><i class="fas fa-check text-white"></i></div>' : ''}
+                ${isSelected && isCore ? '<div class="text-[7px] text-cyan-400 mt-1 font-black animate-pulse">REQUIRED ACTIVE</div>' : ''}
+                ${isSelected ? '<div class="mt-2 w-5 h-5 rounded-full bg-cyan-500 flex items-center justify-center text-[10px]"><i class="fas fa-check text-white"></i></div>' : ''}
               </div>
 
               <!-- Subtle Category Count -->
@@ -2246,7 +2274,7 @@
             <div class="match-slot occupied ${isWinner ? 'winner' : ''} flex items-center">
                 <img src="${p.sticker}" class="w-5 h-5 rounded-md mr-2">
                 <span class="truncate flex-1">${p.name}</span>
-                <span class="ml-2 bg-blue-600/10 px-2 py-0.5 rounded-md text-[10px] text-blue-600 font-black">${score}</span>
+                <span class="ml-2 bg-cyan-600/10 px-2 py-0.5 rounded-md text-[10px] text-cyan-600 font-black">${score}</span>
             </div>
           `;
         };
@@ -2328,11 +2356,11 @@
           const score = m.score[pKey];
           return `
             <div class="flex flex-col items-center gap-1">
-                <div class="text-[8px] font-black uppercase text-blue-400 tracking-wider mb-1">${label}</div>
+                <div class="text-[8px] font-black uppercase text-cyan-400 tracking-wider mb-1">${label}</div>
                 <div class="bg-slate-700/60 text-white text-[10px] font-bold px-4 py-3 rounded-xl border border-white/10 w-[160px] flex items-center shadow-lg">
                     <img src="${p.sticker}" class="w-6 h-6 rounded-md mr-3">
                     <span class="truncate flex-1 text-left font-black">${p.name}</span>
-                    <span class="ml-2 bg-blue-500 px-2 py-0.5 rounded-lg text-xs font-black">${score}</span>
+                    <span class="ml-2 bg-cyan-500 px-2 py-0.5 rounded-lg text-xs font-black">${score}</span>
                 </div>
             </div>
           `;
@@ -2648,7 +2676,7 @@
         const pName = activePlayer === "X" ? m.p1.name : m.p2.name;
         
         const statusEl = document.getElementById("game-status");
-        statusEl.innerHTML = `Turn <span class="${activePlayer === "X" ? "text-blue-400" : "text-pink-400"}">${pName}</span>`;
+        statusEl.innerHTML = `Turn <span class="${activePlayer === "X" ? "text-cyan-400" : "text-yellow-400"}">${pName}</span>`;
 
         const p1Card = document.getElementById("p1-card");
         const p2Card = document.getElementById("p2-card");
@@ -2656,7 +2684,7 @@
         const p2Glow = document.querySelector(".p2-active-glow");
 
         if (activePlayer === "X") {
-          p1Card.style.borderColor = "#3b82f6";
+          p1Card.style.borderColor = "#11C3D2";
           p1Card.style.opacity = "1";
           p1Card.style.transform = "scale(1.05)";
           if (p1Glow) p1Glow.style.opacity = "1";
@@ -2671,7 +2699,7 @@
           p1Card.style.transform = "scale(1)";
           if (p1Glow) p1Glow.style.opacity = "0";
           
-          p2Card.style.borderColor = "#ec4899";
+          p2Card.style.borderColor = "#F8CD53";
           p2Card.style.opacity = "1";
           p2Card.style.transform = "scale(1.05)";
           if (p2Glow) p2Glow.style.opacity = "1";
@@ -2739,8 +2767,8 @@
         opts.innerHTML = q.o
           .map(
             (opt, i) => `
-          <button onclick="checkAnswer(${i})" class="glass-card py-2.5 px-4 text-left hover:bg-blue-500/20 transition border border-white/5 flex items-center gap-3 group">
-            <span class="w-7 h-7 rounded-lg bg-white/5 flex items-center justify-center font-black text-sm group-hover:bg-blue-500 transition">${String.fromCharCode(65 + i)}</span>
+          <button onclick="checkAnswer(${i})" class="glass-card py-2.5 px-4 text-left hover:bg-cyan-500/20 transition border border-white/5 flex items-center gap-3 group">
+            <span class="w-7 h-7 rounded-lg bg-white/5 flex items-center justify-center font-black text-sm group-hover:bg-cyan-500 transition">${String.fromCharCode(65 + i)}</span>
             <span class="font-bold text-sm">${opt}</span>
           </button>
         `,
@@ -2959,7 +2987,7 @@
         // Info Text Logic
         if (infoText) {
             infoText.innerText = info;
-            infoText.className = info ? "text-blue-400 font-bold text-lg md:text-xl uppercase tracking-widest mt-4 opacity-100" : "hidden";
+            infoText.className = info ? "text-cyan-400 font-bold text-lg md:text-xl uppercase tracking-widest mt-4 opacity-100" : "hidden";
         }
 
         // GOLD THEME for Match Winner
@@ -2975,7 +3003,7 @@
                 particleCount: 200,
                 spread: 100,
                 origin: { y: 0.6 },
-                colors: ['#fbbf24', '#ffffff', '#3b82f6']
+                colors: ['#F8CD53', '#ffffff', '#11C3D2']
             });
         } catch(e) {}
 
@@ -3003,7 +3031,7 @@
             // Grand Final Confetti Blast
             try {
                 const end = Date.now() + 3000;
-                const colors = ['#fbbf24', '#ffffff', '#22d3ee', '#3b82f6'];
+                const colors = ['#F8CD53', '#ffffff', '#22d3ee', '#11C3D2'];
 
                 (function frame() {
                     confetti({
@@ -3066,12 +3094,12 @@
         // Info Text Logic
         if (infoText) {
             infoText.innerText = info;
-            infoText.className = info ? "text-blue-400 font-bold text-lg md:text-xl uppercase tracking-widest mt-4 opacity-100" : "hidden";
+            infoText.className = info ? "text-cyan-400 font-bold text-lg md:text-xl uppercase tracking-widest mt-4 opacity-100" : "hidden";
         }
         
         // STAGE 1: ANNOUNCE WINNER
         label.innerText = `Round ${currentRoundNum} winner :`;
-        label.className = "text-pink-400 font-black text-2xl md:text-3xl uppercase tracking-[0.2em] mb-4 round-anim-subtext";
+        label.className = "text-yellow-400 font-black text-2xl md:text-3xl uppercase tracking-[0.2em] mb-4 round-anim-subtext";
         
         mainText.innerText = winnerObj.name;
         mainText.className = "text-white font-black text-5xl md:text-7xl italic uppercase tracking-tighter round-anim-text";
@@ -3084,7 +3112,7 @@
         setTimeout(() => {
           // STAGE 2: NEXT ROUND
           label.innerText = "READY?";
-          label.className = "text-blue-400 font-black text-2xl md:text-3xl uppercase tracking-[0.4em] mb-4 round-anim-subtext";
+          label.className = "text-cyan-400 font-black text-2xl md:text-3xl uppercase tracking-[0.4em] mb-4 round-anim-subtext";
           if (infoText) infoText.className = "hidden";
           
           const isLastRound = nextRoundNum === tournament.bestOf;
@@ -3172,7 +3200,7 @@
         const g = document.getElementById("sticker-gallery");
         g.innerHTML = STICKERS.map(
           (s) =>
-            `<img src="${s}" onclick="selectS('${s}')" class="bg-slate-800 p-2 rounded-xl cursor-pointer hover:bg-blue-500 border border-white/10 transition">`,
+            `<img src="${s}" onclick="selectS('${s}')" class="bg-slate-800 p-2 rounded-xl cursor-pointer hover:bg-cyan-500 border border-white/10 transition">`,
         ).join("");
       }
       function selectS(s) {
